@@ -16,7 +16,6 @@ product is created or its status is updated. These events can be used to notify 
 */
 contract SupplyChain {
 
-    
     struct Product {
         string name;
         address manufacturer;
@@ -46,23 +45,6 @@ contract SupplyChain {
     function getProduct(uint productId) public view returns (string memory, address , address ,  uint256 , bool ) {
         return (products[productId].name, products[productId].manufacturer, products[productId].currentLocation,
             products[productId].price,products[productId].isSold);
-    }
-
-    function getAllProducts() public view returns (string[] memory, address[] memory, address[] memory,  uint256[] memory, bool[] memory) {
-        string[] memory names  = new string[](productCount);
-        address[] memory manufacturers = new address[](productCount);
-        address[] memory currentLocations = new address[](productCount);
-        uint256[] memory prices = new uint256[](productCount);
-        bool[] memory status = new bool[](productCount);
-
-        for (uint i = 1; i <= productCount; i++) {
-            names[i-1] = products[i].name;
-            manufacturers[i-1] = products[i].manufacturer;
-            currentLocations[i-1] = products[i].currentLocation;
-            prices[i-1] = products[i].price;
-            status[i-1] = products[i].isSold;
-        }
-        return (names, manufacturers, currentLocations, prices, status);
     }
 
     function acquireProduct(uint _productId) payable public {
