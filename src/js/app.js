@@ -304,7 +304,8 @@ App = {
                   <!-- Sale badge-->
                   <div class="badge ${bg_color} text-white position-absolute" style="top: 0.5rem; right: 0.5rem">${sale}</div>
                   <!-- Product image-->
-                  <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                  <img class="card-img-top" src="${'./images/products/'+(index+1)+'.jpeg'}" alt="${product[0]}" 
+                  style="width:150px; height:150px;align-self: center;">
                   <!-- Product details-->
                   <div class="card-body p-1">
                       <div class="text-justify">
@@ -399,7 +400,8 @@ App = {
                   <!-- Sale badge-->
                   <div id="status-badge-${index}" value="${index}" class="badge ${bg_color} text-white position-absolute" style="top: 0.5rem; right: 0.5rem; cursor: pointer;">${sale}</div>
                   <!-- Product image-->
-                  <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                  <img class="card-img-top" src="${'./images/products/'+(index+1)+'.jpeg'}" alt="${product[0]}" 
+                  style="width:150px; height:150px;align-self: center;">
                   <!-- Product details-->
                   <div class="card-body p-1">
                       <div class="text-justify">
