@@ -11,7 +11,7 @@ contract SupplyChain {
         bool isSold; // Flag che indica se il prodotto è in vendita
     }
 
-    // Mappatura che tiene traccia dei prodotti in base al loro ID
+    // Mappatura per tenere traccia dei prodotti creati
     mapping (uint => Product) public products;
 
     // Contatore dei prodotti presenti nel contratto
