@@ -30,7 +30,7 @@ contract SupplyChain {
 
     modifier validProduct(uint _productId) {
         // Verifica che l'id del prodotto esista realmente
-        require(_productId < 0 && _productId > productCount, "Il prodotto non esiste");
+        require(_productId > 0 && _productId <= productCount, "Il prodotto non esiste");
         // Verificat che il prodotto sia in vendita
         require(products[_productId].isSold == false, "Prodotto non in vendita");
         _;
