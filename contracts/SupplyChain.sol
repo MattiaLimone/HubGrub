@@ -22,6 +22,32 @@ contract SupplyChain {
     event ProductChanged(uint productId, uint256 newPrice, bool newStatus, uint256 timestamp);
     event ProductSold(uint productId, address owner, address buyer, uint256 price, uint256 timestamp);
     
+    modifier notOwner(uint _productId) {
+        // Verifica che l'acquirente del prodotto non sia già il proprietario
+        require(products[_productId].currentLocation != msg.sender, "Non puoi acquistare un prodotto posseduto");
+        _;
+    }
+
+    modifier validProduct(uint _productId) {
+        // Verifica che l'id del prodotto esista realmente
+        require(_productId < 0 && _productId > productCount, "Il prodotto non esiste");
+        // Verificat che il prodotto sia in vendita
+        require(products[_productId].isSold == false, "Prodotto non in vendita");
+        _;
+    }
+
+    modifier checkPrice(uint _productId) {
+        // Verifica se la somma di Ether inviata corrisponde al prezzo del prodotto
+        require(msg.value == products[_productId].price, "La somma di Ether inviata non corrisponde al prezzo del prodotto");
+        _;
+    }
+
+    modifier checkProductLocation(uint _productId) {
+         // Verifica se chi richiama la funzione è il proprietario del prodotto
+        require(products[_productId].currentLocation == msg.sender, "Non sei il proprietario del prodotto");
+        _;
+    }
+
     // Funzione per la creazione di un nuovo prodotto
     function createProduct(string memory _name, uint256 _price) public {
         // Incrementa il contatore dei prodotti
@@ -46,14 +72,7 @@ contract SupplyChain {
     }
 
     // Funzione per acquistare un prodotto
-    function acquireProduct(uint _productId) payable public {
-        // Verifica se il prodotto è già stato venduto
-        require(products[_productId].isSold == false, "Prodotto non in vendita");
-        // Verifica se l'acquirente non è anche il venditore
-        require(products[_productId].currentLocation != msg.sender, "Non puoi acquistare un prodotto posseduto");
-        // Verifica se la quantità di Ether inviata è uguale al prezzo del prodotto
-        require(msg.value == products[_productId].price, "Incorrect amount of Ether sent");
-
+    function acquireProduct(uint _productId) payable public notOwner(_productId) validProduct(_productId) checkPrice(_productId) {
         // Effettua il trasferimento di Ether dal compratore al venditore
         (bool sent, ) = payable(products[_productId].currentLocation).call{value: msg.value}("");
 
@@ -72,9 +91,7 @@ contract SupplyChain {
     }
 
     // Funzione per cambiare stato e prezzo di un prodotto
-    function changeProductAttr(uint _productId, uint256 _newPrice, bool _newStatus) public {
-        // Verifica se chi richiama la funzione è il proprietario del prodotto
-        require(products[_productId].currentLocation == msg.sender, "Non sei il proprietario del prodotto");
+    function changeProductAttr(uint _productId, uint256 _newPrice, bool _newStatus) public checkProductLocation(_productId) {
         // Aggiorna il prezzo del prodotto
         products[_productId].price = _newPrice;
         // Aggiorna lo stato del prodotto
