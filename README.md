@@ -44,10 +44,12 @@ Seamless and trustworthy transaction process for sellers and buyers.
 
 ### Built With
 
-* [![Ethereum]][Ethereum-link] 
-* [![Solidity]][Solidity-link] 
-* [![NodeJS]][NodeJS-link]
-
+ [![Ethereum]][Ethereum-link] 
+ [![Solidity]][Solidity-link] 
+ [![NodeJS]][NodeJS-link]
+ [![JavaScript]][JavaScript-link]
+ [![HTML5]][HTML5-link]
+ [![CSS3]][CSS3-link]
 ## Getting started
 
 ### Prerequisites
@@ -135,3 +137,9 @@ Alessia Natake [[Linkedin Profile](https://www.linkedin.com/in/alessianatale/)]
 [Ethereum-link]: https://ethereum.org/
 [Solidity]: https://img.shields.io/badge/Solidity-%23363636.svg?style=for-the-badge&logo=solidity&logoColor=white
 [Solidity-link]: https://soliditylang.org/
+[HTML5]: https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white
+[HTML5-link]: https://www.w3.org/standards/webdesign/htmlcss
+[CSS3]: https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white
+[CSS3-link]: https://www.w3.org/standards/webdesign/htmlcss
+[JavaScript]: https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E
+[JavaScript-link]: https://www.javascript.com/
